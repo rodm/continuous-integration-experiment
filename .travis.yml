@@ -1,0 +1,20 @@
+
+# Don't use the Travis Container-Based Infrastructure
+sudo: true
+
+language: java
+
+matrix:
+  include:
+    - os: linux
+      dist: precise
+      jdk: oraclejdk7
+      install: ./gradlew --version
+    - os: linux
+      dist: precise
+      jdk: oraclejdk8
+      install: ./gradlew --version
+
+script:
+  - ./gradlew --version
+
