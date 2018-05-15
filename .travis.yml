@@ -9,16 +9,15 @@ matrix:
     - os: linux
       dist: precise
       jdk: oraclejdk7
-      install: ./gradlew --version
     - os: linux
       dist: precise
       jdk: oraclejdk8
-      install: ./gradlew --version
     - os: linux
       dist: trusty
-      jdk: oraclejdk8
-      install: ./gradlew wrapper --gradle-version=4.5 && ./gradlew --version && jdk_switcher use oraclejdk9
+      jdk: oraclejdk9
+      install: jdk_switcher use oraclejdk8 && ./gradlew wrapper --gradle-version=4.5 && jdk_switcher use oraclejdk9
 
 script:
   - ./gradlew --version
+  - ./gradlew -s clean build
 
