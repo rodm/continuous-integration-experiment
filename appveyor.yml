@@ -14,9 +14,8 @@ environment:
       GRADLE_VERSION: 4.7
 
 install:
-#  - SET PATH=%JAVA_HOME%\bin;%PATH%
   - set JAVA_HOME=%JDK8_HOME%
-  - gradlew.bat -u -i --no-daemon wrapper --gradle-version=%GRADLE_VERSION%
+  - gradlew.bat -u -d --no-daemon wrapper --gradle-version=%GRADLE_VERSION%
   - set JAVA_HOME=%JDK_HOME%
   - gradlew.bat --version
 
