@@ -6,15 +6,16 @@ environment:
   matrix:
     - JDK_HOME: C:\Program Files\Java\jdk1.7.0
       GRADLE_VERSION: 4.0
-    - JDK_HOME: C:\Program Files\Java\jdk1.8.0
-      GRADLE_VERSION: 4.0
-    - JDK_HOME: C:\Program Files\Java\jdk9
-      GRADLE_VERSION: 4.5
-    - JDK_HOME: C:\Program Files\Java\jdk10
-      GRADLE_VERSION: 4.7
+#    - JDK_HOME: C:\Program Files\Java\jdk1.8.0
+#      GRADLE_VERSION: 4.0
+#    - JDK_HOME: C:\Program Files\Java\jdk9
+#      GRADLE_VERSION: 4.5
+#    - JDK_HOME: C:\Program Files\Java\jdk10
+#      GRADLE_VERSION: 4.7
 
 before_build:
   - set JAVA_HOME=%JDK8_HOME%
+  - set
   - gradlew.bat --version
   - gradlew.bat -u -d -S --no-daemon wrapper --gradle-version=%GRADLE_VERSION%
   - set JAVA_HOME=%JDK_HOME%
