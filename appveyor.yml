@@ -14,6 +14,7 @@ environment:
 #      GRADLE_VERSION: 4.7
 
 before_build:
+  - set DEBUG=true
   - set JAVA_HOME=%JDK8_HOME%
   - set
   - gradlew.bat --version
