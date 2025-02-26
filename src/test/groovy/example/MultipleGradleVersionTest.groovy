@@ -67,7 +67,7 @@ class MultipleGradleVersionTest {
         }
 
         if (GradleVersion.version(version) >= GradleVersion.version('8.10')) {
-            assumeFalse(OperatingSystem.current() == OperatingSystem.WINDOWS)
+            assumeFalse(OperatingSystem.current() == OperatingSystem.WINDOWS, "Skipping test with Gradle ${version} on Windows")
             def gradleDir = createDirectory('gradle').toPath()
             File gradleDaemonJvmProperties = Files.createFile(gradleDir.resolve('gradle-daemon-jvm.properties')).toFile()
             gradleDaemonJvmProperties << """
@@ -128,7 +128,7 @@ class MultipleGradleVersionTest {
         assertThat(releasedJavaVersions, hasItem(javaVersion))
 
         def supportedJavaVersions = supportedByGradle(gradleVersion)
-        assumeTrue(supportedJavaVersions.contains(javaVersion))
+        assumeTrue(supportedJavaVersions.contains(javaVersion), "Skipping test using Java version ${javaVersion}")
 
         BuildResult result = executeBuild(gradleVersion, 'showInfo')
 
