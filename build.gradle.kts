@@ -20,9 +20,14 @@ java {
     }
 }
 
+val testJavaVersion = (findProperty("test.java.version") as String?) ?: "8"
+
 tasks {
     test {
         useJUnitPlatform()
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(testJavaVersion))
+        })
         systemProperty ("junit.jupiter.tempdir.cleanup.mode.default", "ON_SUCCESS")
     }
 }
