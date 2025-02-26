@@ -121,6 +121,8 @@ class MultipleGradleVersionTest {
     @ParameterizedTest(name = 'with Gradle {0}')
     @MethodSource('example.MultipleGradleVersionTest#gradleVersions')
     void 'show info task'(String gradleVersion) {
+        println "Java version: ${System.getProperty('java.version')}"
+        println "Gradle version: ${GradleVersion.current()}"
         def releasedJavaVersions = releasedJavaVersions()
         def javaVersion = JavaVersion.current().toString()
         assertThat(releasedJavaVersions, hasItem(javaVersion))
