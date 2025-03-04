@@ -32,7 +32,10 @@ jobs:
         run: ./gradlew --show-version --full-stacktrace clean build
       - name: Upload reports
         uses: actions/upload-artifact@v4
+        if: success() || failure()
         with:
           name: reports-${{ matrix.os }}
-          path: build/reports/**
+          path: |
+            build/reports/**
+            build/tmp/functionalTest/**
           retention-days: 3
