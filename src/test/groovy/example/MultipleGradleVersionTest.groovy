@@ -72,7 +72,7 @@ class MultipleGradleVersionTest {
             if (JavaVersion.current() < JavaVersion.VERSION_17) {
                 File gradleProperties = Files.createFile(projectDir.resolve('gradle.properties')).toFile()
                 gradleProperties << """
-                org.gradle.java.home=${System.getProperty("java17.home")}
+                org.gradle.java.home=${System.getProperty("java17.home").replace("\\", "\\\\")}
                 """
                 def gradleDir = createDirectory('gradle').toPath()
                 File gradleDaemonJvmProperties = Files.createFile(gradleDir.resolve('gradle-daemon-jvm.properties')).toFile()
