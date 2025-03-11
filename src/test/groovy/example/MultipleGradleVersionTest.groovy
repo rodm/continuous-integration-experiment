@@ -71,8 +71,11 @@ class MultipleGradleVersionTest {
 //            assumeFalse(OperatingSystem.current() == OperatingSystem.WINDOWS, "Skipping test with Gradle ${version} on Windows")
             if (JavaVersion.current() < JavaVersion.VERSION_17) {
                 File gradleProperties = Files.createFile(projectDir.resolve('gradle.properties')).toFile()
+//                gradleProperties << """
+//                org.gradle.java.home=${System.getProperty("java17.home").replace("\\", "\\\\")}
+//                """
                 gradleProperties << """
-                org.gradle.java.home=${System.getProperty("java17.home").replace("\\", "\\\\")}
+                org.gradle.java.installations.fromEnv=JDK_17_0,JAVA_HOME_17_X64,JAVA_HOME_17_ARM64
                 """
                 def gradleDir = createDirectory('gradle').toPath()
                 File gradleDaemonJvmProperties = Files.createFile(gradleDir.resolve('gradle-daemon-jvm.properties')).toFile()
