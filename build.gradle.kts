@@ -22,10 +22,6 @@ java {
 
 val testJavaVersion = (findProperty("test.java.version") as String?) ?: "8"
 
-val java17Home = javaToolchains
-    .launcherFor { languageVersion.set(JavaLanguageVersion.of("17")) }.get()
-    .metadata.installationPath.toString()
-
 tasks {
     test {
         useJUnitPlatform()
@@ -33,6 +29,5 @@ tasks {
             languageVersion.set(JavaLanguageVersion.of(testJavaVersion))
         })
         systemProperty ("junit.jupiter.tempdir.cleanup.mode.default", "ON_SUCCESS")
-        systemProperty ("java17.home", java17Home)
     }
 }
